@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Result</title>
+  <style>
+    body { font-family: Arial; margin: 40px; }
+    .box { max-width: 650px; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { padding: 8px; border-bottom: 1px solid #eee; text-align: left; }
+    .tag { display:inline-block; padding: 6px 10px; background:#111; color:#fff; border-radius: 8px; }
+    a { display:inline-block; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Prediction Result</h2>
+    <p>Predicted Emotion: <span class="tag">{{ pred_label }}</span></p>
+    <p>Confidence: {{ (pred_conf * 100) | round(2) }}%</p>
+
+    <h3>All Class Probabilities</h3>
+    <table>
+      <tr><th>Class</th><th>Probability</th></tr>
+      {% for cls, p in prob_list %}
+        <tr>
+          <td>{{ cls }}</td>
+          <td>{{ (p * 100) | round(2) }}%</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <a href="/">← Try another image</a>
+  </div>
+</body>
+</html>
